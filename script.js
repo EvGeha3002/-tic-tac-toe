@@ -3,6 +3,7 @@ const buttons = document.querySelectorAll(".play-zone button");
 var botOn = false;
 var gameIsGoing = false;
 var currentMove = 1;
+var botIsMoving = false;
 const winArray = [
     [0, 1, 2],
     [0, 3, 6],
@@ -24,6 +25,11 @@ $(".button").click(function(){
     var target = $(this);
     if(target.text() === '')
     {
+        if(botIsMoving === true)
+        {
+            alert("Дождитесь окончания хода бота!");
+            return;
+        }
         if(currentMove % 2 === 0)
         {
             changeText("O");
@@ -63,7 +69,8 @@ function botLogic()
     {
         return;          
     }
-    $("#show-current-move span").text("Current move: " + (currentMove + 1)); 
+    $("#show-current-move span").text("Current move: " + (currentMove + 1));
+    botIsMoving = true; 
     var fieldIsEmpty = false;
     var btnId;
     var prevP = currentMove % 2 === 0 ? "X" : "O";
@@ -132,7 +139,7 @@ function botLogic()
     }
     if(currentMove % 2 === 0)
     {
-        buttons[btnId].textContent = 'O';         
+        buttons[btnId].textContent = 'O';       
         if(hasWon("O") === true)
         {
             historyAppend("Бот выиграл!");
@@ -153,6 +160,7 @@ function botLogic()
     {
         draw();     
     }
+    botIsMoving = false; 
     return;
 };
 function hasWon(p)
