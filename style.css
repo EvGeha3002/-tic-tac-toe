@@ -1,0 +1,107 @@
+:root{
+    --button-width: 125px;
+    --button-height: 125px;
+}
+#main{
+    display: block;
+    position: relative;
+    width: calc(var(--button-width) * 3 + 2px);
+    margin: 0 auto;
+    top: 150px;
+}
+#show-current-move{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+#show-current-move > span{
+    font-size: 25px;
+}
+.play-zone button{
+    width: var(--button-width);
+    height: var(--button-height);
+    border: 0;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-size: 70px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.play-zone button:hover{
+    opacity: 0.7;
+    transition-duration: 0.2s;
+}
+.play-zone{
+    background-color: black;
+    width: calc(var(--button-width) * 3 + 2px);
+    height: calc(var(--button-height) * 3 + 2px);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;  
+}
+#control-buttons{
+    margin-top: 20px;
+    width: calc((var(--button-width) * 3 + 2px));
+    display: flex;
+    justify-content: space-between;
+}
+#rst-btn, #bot-on-off{
+    margin-top: 10px;
+    width: calc((var(--button-width) * 3 + 2px) / 2 - 5px);
+    height: 60px;
+    cursor: pointer;
+    background-color: rgb(204, 204, 204);
+    border: 0;
+    border-radius: 5px;
+    font-size: 25px;
+}
+#rst-btn:hover, #bot-on-off:hover{
+    background-color: rgb(180, 180, 180);
+}
+#bot-on-off{
+    color: blue;
+}
+.history{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc((var(--button-width) * 3 + 2px) / 2 - 5px);
+}
+.history > ul{
+    padding: 0;    
+    margin: 0;
+}
+.history > ul > li{  
+    background-color: rgb(221, 221, 221);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 35px;
+    cursor: default;
+    font-size: 18px;
+}
+.history > ul > li:hover{
+    background-color: rgb(197, 197, 197);
+}
+.history > button{
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: rgb(204, 204, 204);
+    border: 0;
+    border-radius: 0 0 0 5px;
+}
+.history > button:hover{
+    background-color: rgb(180, 180, 180);
+}
+html{
+    font-family: 'Roboto', sans-serif;
+}

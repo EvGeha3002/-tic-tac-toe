@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHW</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <div class="play-zone">
+            <button class="button"></button>
+            <button class="button"></button>
+            <button class="button"></button>
+            <button class="button"></button>
+            <button class="button"></button>
+            <button class="button"></button>
+            <button class="button"></button>
+            <button class="button"></button>
+            <button class="button"></button>
+        </div>
+        <div id="control-buttons">
+            <button id="rst-btn">Reset</button>
+            <button id="bot-on-off">Bot: off</button>
+        </div>
+        <div id="show-current-move">
+            <span>Current move: undefined</span>
+        </div>
+    </div>  
+    <div class="history">
+        <ul type="none" class="history-list"></ul>
+        <button id="rst-history-btn" title="Reset history" aria-label="Reset history">Reset History</button>
+    </div>
+    <script src ="script.js"></script>
+</body>
+</html>
