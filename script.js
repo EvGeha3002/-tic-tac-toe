@@ -14,14 +14,6 @@ const winArray = [
     [0, 4, 8],
 ];
 $(".button").click(function(){
-    function changeText(p)
-    {
-        target.text(p);          
-        if(hasWon(p) === true)
-        {
-            historyAppend("Игрок " + p + " выиграл!");                    
-        }
-    }
     if(gameIsGoing === false)
     {       
         fieldReset();
@@ -48,6 +40,15 @@ $(".button").click(function(){
         {
             draw();   
         }
+        return;
+        function changeText(p)
+        {
+            target.text(p);          
+            if(hasWon(p) === true)
+            {
+                historyAppend("Игрок " + p + " выиграл!");                    
+            }
+        }
     }
     else
     {       
@@ -55,37 +56,7 @@ $(".button").click(function(){
     }   
 });
 function botLogic()
-{
-    function findBestMove(p)
-    {
-        for(var i = 0; i < winArray.length; i++)
-        {
-            if(fieldIsEmpty === true)
-            {
-                return;
-            }
-            var count = 0;
-            for(var j = 0; j < winArray[i].length; j++)
-            {
-                if(buttons[winArray[i][j]].textContent === p)
-                {
-                    count++;
-                }
-                if(count === 2)
-                {
-                    for(var z = 0; z < winArray[i].length; z++)
-                    {
-                        if(buttons[winArray[i][z]].textContent === '')
-                        {
-                            btnId = winArray[i][z];
-                            fieldIsEmpty = true;
-                        }
-                    }
-                    return;
-                }
-            }
-        } 
-    }   
+{    
     if(currentMove >= 10 || gameIsGoing === false)
     {
         return;          
@@ -128,6 +99,37 @@ function botLogic()
     {
         draw();     
     }
+    return;
+    function findBestMove(p)
+    {
+        for(var i = 0; i < winArray.length; i++)
+        {
+            if(fieldIsEmpty === true)
+            {
+                return;
+            }
+            var count = 0;
+            for(var j = 0; j < winArray[i].length; j++)
+            {
+                if(buttons[winArray[i][j]].textContent === p)
+                {
+                    count++;
+                }
+                if(count === 2)
+                {
+                    for(var z = 0; z < winArray[i].length; z++)
+                    {
+                        if(buttons[winArray[i][z]].textContent === '')
+                        {
+                            btnId = winArray[i][z];
+                            fieldIsEmpty = true;
+                        }
+                    }
+                    return;
+                }
+            }
+        } 
+    } 
 };
 function hasWon(p)
 {
