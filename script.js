@@ -68,8 +68,60 @@ function botLogic()
     var btnId;
     var prevP = currentMove % 2 === 0 ? "X" : "O";
     var currP = currentMove % 2 === 0 ? "O" : "X";
-    findBestMove(currP);
-    findBestMove(prevP);
+    for(var i = 0; i < winArray.length; i++)
+    {
+        if(fieldIsEmpty === true)
+        {
+            break;
+        }
+        var count = 0;
+        for(var j = 0; j < winArray[i].length; j++)
+        {
+               if(buttons[winArray[i][j]].textContent === currP)
+            {
+                count++;
+            }
+            if(count === 2)
+            {
+                for(var z = 0; z < winArray[i].length; z++)
+                {
+                    if(buttons[winArray[i][z]].textContent === '')
+                    {
+                        btnId = winArray[i][z];
+                        fieldIsEmpty = true;
+                        break;
+                    }
+                }
+            }
+        }
+    } 
+    for(var i = 0; i < winArray.length; i++)
+    {
+        if(fieldIsEmpty === true)
+        {
+            break;
+        }
+        var count = 0;
+        for(var j = 0; j < winArray[i].length; j++)
+        {
+            if(buttons[winArray[i][j]].textContent === prevP)
+            {
+                count++;
+            }
+            if(count === 2)
+            {
+                for(var z = 0; z < winArray[i].length; z++)
+                {
+                    if(buttons[winArray[i][z]].textContent === '')
+                    {
+                        btnId = winArray[i][z];
+                        fieldIsEmpty = true;
+                        break;
+                    }
+                }
+            }
+        }
+    } 
     while(fieldIsEmpty === false)
     {
         btnId = Math.floor(Math.random() * countOfBtns);
@@ -102,37 +154,6 @@ function botLogic()
         draw();     
     }
     return;
-    function findBestMove(p)
-    {
-        if(fieldIsEmpty === true)
-        {
-            return;
-        }
-        for(var i = 0; i < winArray.length; i++)
-        {
-            var count = 0;
-            for(var j = 0; j < winArray[i].length; j++)
-            {
-                if(buttons[winArray[i][j]].textContent === p)
-                {
-                    count++;
-                }
-                if(count === 2)
-                {
-                    for(var z = 0; z < winArray[i].length; z++)
-                    {
-                        if(buttons[winArray[i][z]].textContent === '')
-                        {
-                            btnId = winArray[i][z];
-                            fieldIsEmpty = true;
-                            return;
-                        }
-                    }
-                    return;
-                }
-            }
-        } 
-    }   
 };
 function hasWon(p)
 {
