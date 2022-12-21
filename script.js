@@ -3,7 +3,6 @@ const buttons = document.querySelectorAll(".play-zone button");
 var botOn = false;
 var gameIsGoing = false;
 var currentMove = 1;
-var botIsMoving = false;
 const winArray = [
     [0, 1, 2],
     [0, 3, 6],
@@ -15,21 +14,15 @@ const winArray = [
     [0, 4, 8],
 ];
 $(".button").click(function(){
-    
     if(gameIsGoing === false)
     {       
         fieldReset();
         gameIsGoing = true;
-    }
+    } 
     $("#show-current-move span").text("Current move: " + (currentMove + 1)); 
     var target = $(this);
     if(target.text() === '')
-    {
-        if(botIsMoving === true)
-        {
-            alert("Дождитесь окончания хода бота!");
-            return;
-        }
+    {    
         if(currentMove % 2 === 0)
         {
             changeText("O");
@@ -41,7 +34,7 @@ $(".button").click(function(){
         currentMove += 1;
         if(botOn === true)
         {
-            setTimeout(function(){botLogic();}, 400);            
+            botLogic();            
         }
         if(currentMove >= 10 && gameIsGoing === true)
         {
@@ -63,14 +56,12 @@ $(".button").click(function(){
     }   
 });
 function botLogic()
-{
-    
+{ 
     if(currentMove >= 10 || gameIsGoing === false)
     {
         return;          
     }
-    $("#show-current-move span").text("Current move: " + (currentMove + 1));
-    botIsMoving = true; 
+    $("#show-current-move span").text("Current move: " + (currentMove + 1));   
     var fieldIsEmpty = false;
     var btnId;
     var prevP = currentMove % 2 === 0 ? "X" : "O";
@@ -139,18 +130,19 @@ function botLogic()
     }
     if(currentMove % 2 === 0)
     {
-        buttons[btnId].textContent = 'O';       
+        buttons[btnId].textContent = 'O';             
         if(hasWon("O") === true)
         {
+
             historyAppend("Бот выиграл!");
             return;                        
         }
     }
     else
     {
-        buttons[btnId].textContent = 'X'; 
+        buttons[btnId].textContent = 'X';    
         if(hasWon("X") === true)
-        {            
+        {          
             historyAppend("Бот выиграл!");
             return;       
         }
@@ -160,7 +152,6 @@ function botLogic()
     {
         draw();     
     }
-    botIsMoving = false; 
     return;
 };
 function hasWon(p)
