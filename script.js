@@ -14,6 +14,7 @@ const winArray = [
     [0, 4, 8],
 ];
 $(".button").click(function(){
+    
     if(gameIsGoing === false)
     {       
         fieldReset();
@@ -56,7 +57,8 @@ $(".button").click(function(){
     }   
 });
 function botLogic()
-{    
+{
+    
     if(currentMove >= 10 || gameIsGoing === false)
     {
         return;          
@@ -102,12 +104,12 @@ function botLogic()
     return;
     function findBestMove(p)
     {
+        if(fieldIsEmpty === true)
+        {
+            return;
+        }
         for(var i = 0; i < winArray.length; i++)
         {
-            if(fieldIsEmpty === true)
-            {
-                return;
-            }
             var count = 0;
             for(var j = 0; j < winArray[i].length; j++)
             {
@@ -123,13 +125,14 @@ function botLogic()
                         {
                             btnId = winArray[i][z];
                             fieldIsEmpty = true;
+                            return;
                         }
                     }
                     return;
                 }
             }
         } 
-    } 
+    }   
 };
 function hasWon(p)
 {
